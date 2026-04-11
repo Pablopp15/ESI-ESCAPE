@@ -1,0 +1,10 @@
+OB01-Tarjeta_Lab-05-Una tarjeta magnética azul del Laboratorio de Hardware.
+OB02-Llave_Cobre-03-Una llave antigua con el rotulo 'Biblioteca'.
+OB03-Llave_Maestra-16-Una llave elegante y pesada de la dirección.
+OB04-Papel_con_un_mensaje-01-Bienvenido al scaperoom de la esi.
+OB05-Pulsera_Magnetica-09-Una pulsera de aspecto avanzado, tiene grabada la letra R.
+OB06-Ganzúa-17-Una herramienta poco ética que abre alguna cerradura convencional.
+OB07-Linterna_ultravioleta-07-Linterna que puede servir para ver algún mensaje oculto.
+OB08-Caja_de_carton_mojada-10-Caja de aspecto poco util, sera mejor tirarla.
+OB09-Vaso_de_cafe-03-Vaso a medio tomar abandonado encima de unos papeles aparentemente viejos.
+OB10-Libro-09-Libro de programación tirado en un pasillo.
