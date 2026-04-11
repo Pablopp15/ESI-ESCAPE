@@ -20,8 +20,8 @@ void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_
 void cargar_partida(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles);
 
 
-void escribir_fichero(char *nombreFichero, char lineas_de_texto[][100], int cantidad_lineas);
-int leer_fichero(char *nombreFichero, char texto[][100]);
+void escribir_fichero(char *nombreFichero, char lineas_de_texto[][300], int cantidad_lineas);
+int leer_fichero(char *nombreFichero, char texto[][300]);
 
 //Funciones para cargar partida
 void parsear_jugador(char linea[], char id_jugador[]);
