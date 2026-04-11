@@ -13,7 +13,7 @@ void iniciar_juego() {
     leerObjetos("objetos.txt", &mi_lista_objetos); 
 
     //CARGAMOS LOS JUGADORES DESDE EL TXT
-    char lineas_jugadores[100][100];
+    char lineas_jugadores[300][300];
     int num_jug_leidos = leer_fichero("Jugadores.txt", lineas_jugadores);
 
     for (int i = 0; i < num_jug_leidos; i++) {
@@ -112,7 +112,7 @@ void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
                 
                 agregarJugadorALista(lista_jugadores, &nuevo_j);
 
-                char linea_nueva[1][100]; 
+                char linea_nueva[1][300]; 
                 sprintf(linea_nueva[0], "%s-%s-%s-%s", 
                         nuevo_j.Id_jug, 
                         nuevo_j.nom_completo, 
@@ -314,7 +314,7 @@ void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int
 //Funcion para guardar la partida
 void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_objetos, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
     
-    char lineas_a_guardar[50][100]; 
+    char lineas_a_guardar[150][300]; 
     int total_lineas = 0;
 
     //Guardar Jugador
@@ -384,7 +384,7 @@ void parsear_puzle(char linea[], Puzle *puz) {
 
 void cargar_partida(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
     
-    char lineas_leidas[100][100];
+    char lineas_leidas[300][300];
     int total_lineas = leer_fichero("Partida.txt", lineas_leidas);
 
     if (total_lineas == 0) {
