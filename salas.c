@@ -4,7 +4,7 @@
 #include "salas.h"
 void describir_sala(int id_sala_actual, Sala* vector_salas, int num_salas) {
     for (int i = 0; i < num_salas; i++) {
-        // Ahora comparamos números enteros
+       
         if (vector_salas[i].id == id_sala_actual) {
             printf("\n--- %s ---\n", vector_salas[i].nombre);
             printf("%s\n", vector_salas[i].descripcion);
@@ -69,7 +69,7 @@ int entrar_en_otra_sala(int id_sala_actual, Conexion* vector_conexiones, int num
             return id_sala_actual;
         }
     } else {
-        // Si buscar_conexion devolvió NULL
+       
         printf("-> No puedes ir a esa sala desde aqui. Revisa las salidas disponibles.\n");
         return id_sala_actual; 
     }
