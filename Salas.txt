@@ -1,0 +1,20 @@
+01-Entrada Principal-INICIAL-Te encuentras en el hall principal de la ESI. Las puertas principales están bloqueadas.
+02-Pasillo Norte-NORMAL-Un pasillo largo y bien iluminado. Hay taquillas a ambos lados.
+03-Conserjería-NORMAL-Pequeño mostrador lleno de llaves y objetos perdidos. Huele a café.
+04-Pasillo Sur-NORMAL-Un pasillo más oscuro. Las luces fluorescentes parpadean.
+05-Lab. de Hardware-NORMAL-Mesas llenas de placas base, cables y soldadores.
+06-Lab. de Software-NORMAL-Decenas de ordenadores apagados. Una pantalla sigue encendida.
+07-Despacho Profesores-NORMAL-Un despacho con varias mesas llenas de exámenes por corregir.
+08-Cafetería-NORMAL-Sillas apiladas sobre las mesas. La máquina de café está rota.
+09-Biblioteca-NORMAL-Estanterías repletas de libros polvorientos sobre programación.
+10-Aseos Planta Baja-NORMAL-Aseos estándar. Uno de los grifos gotea incesantemente.
+11-Escalera Principal-NORMAL-Amplia escalera de granito que conecta las plantas del edificio.
+12-Pasillo Primera Planta-NORMAL-Pasillo superior que da acceso a las aulas teóricas.
+13-Aula 1.1-NORMAL-Aula con pupitres ordenados y una gran pizarra verde.
+14-Aula 1.2-NORMAL-Aula similar a la 1.1, pero con un proyector encendido mostrando ruido.
+15-Sala de Servidores-NORMAL-Hace mucho frío aquí. El ruido de los ventiladores es ensordecedor.
+16-Sala de Reuniones-NORMAL-Una gran mesa ovalada y una pizarra llena de diagramas extraños.
+17-Almacén-NORMAL-Cuarto oscuro y pequeño lleno de cajas, monitores viejos y teclados rotos.
+18-Terraza-NORMAL-Zona al aire libre. La puerta hacia la calle sigue estando muy lejos.
+19-Despacho del Director-NORMAL-Despacho amplio con muebles de madera. Parece haber sido registrado.
+20-Puerta Exterior-SALIDA-¡El aire fresco de la calle! Has logrado escapar de la escuela.
