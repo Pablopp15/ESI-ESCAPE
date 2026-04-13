@@ -34,9 +34,8 @@ void resolver_puzle(int id_sala_actual, Puzle puzles[], int num_puzles, Conexion
                 printf("\n-> ¡CORRECTO! Has resuelto el misterio.\n");
                 strcpy(puzles[i].estado, "Resuelto");
                 
-                // --- LA MAGIA PARA ABRIR LA PUERTA ---
                 for(int j = 0; j < num_conexiones; j++) {
-                    // Si la puerta sale de esta sala y su condición de bloqueo es el ID de este puzle...
+                  
                     if(conexiones[j].origen == id_sala_actual && strcmp(conexiones[j].condicion, puzles[i].id) == 0) {
                         strcpy(conexiones[j].estado, "Abierta"); // "Abierta", no "ABIERTA"
                         printf("-> La puerta hacia la sala %02d ahora esta Abierta.\n", conexiones[j].destino);
