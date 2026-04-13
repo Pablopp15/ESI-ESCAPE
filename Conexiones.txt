@@ -32,6 +32,6 @@ C31-15-18-Activa-0
 C32-18-15-Activa-0
 C33-12-16-Bloqueada-OB05
 C34-16-12-Activa-0
-C35-12-19-Bloqueada-OB03
+C35-12-19-Bloqueada-P03
 C36-19-12-Activa-0
-C37-01-20-Bloqueada-P03
+C37-01-20-Bloqueada-OB03
