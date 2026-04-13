@@ -17,7 +17,7 @@ void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int
 
 
 void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_objetos, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles);
-void cargar_partida(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles);
+void cargar_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles);
 
 
 void escribir_fichero(char *nombreFichero, char lineas_de_texto[][300], int cantidad_lineas);
