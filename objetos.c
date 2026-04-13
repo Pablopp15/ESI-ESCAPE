@@ -188,7 +188,7 @@ int usarObjeto(ListaObjetos *l, jugador *j, const char *id_obj, int id_sala_actu
 
    
     if (strcmp(obj->locacion, "Inventario") != 0) {
-        printf("No tienes este objeto en tu inventario (esta en: %s).\n", obj->locacion);
+        printf("No tienes este objeto en tu inventario .\n", obj->locacion);
         return -1;
     }
 
