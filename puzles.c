@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "puzles.h"
-#include "conexiones.h" // Ojo, asegúrate de que esto esté incluido
+#include "conexiones.h" 
 
 void resolver_puzle(int id_sala_actual, Puzle puzles[], int num_puzles, Conexion conexiones[], int num_conexiones) {
     int puzle_encontrado = 0;
