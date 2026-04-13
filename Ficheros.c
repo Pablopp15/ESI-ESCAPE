@@ -3,9 +3,9 @@
 #include <string.h>
 #include "Ficheros.h"
 
-/* ========================================================= */
+
 /* FUNCION PARA LEER UN FICHERO DE TEXTO LINEA A LINEA       */
-/* ========================================================= */
+
 int leer_fichero(char *nombreFichero, char texto[][300]) {
     FILE *f;      
     int i = 0;    
@@ -26,9 +26,9 @@ int leer_fichero(char *nombreFichero, char texto[][300]) {
     return i;   
 }
 
-/* ========================================================= */
+
 /* FUNCION PARA ESCRIBIR AL FINAL DE UN FICHERO              */
-/* ========================================================= */
+
 void escribir_fichero(char *nombreFichero, char texto[][300], int numLineas) {
     FILE *f;
 
@@ -46,9 +46,9 @@ void escribir_fichero(char *nombreFichero, char texto[][300], int numLineas) {
     fclose(f);
 }
 
-/* ========================================================= */
+
 /* FUNCION PARA CARGAR DATOS EN ESTRUCTURAS ESTATICAS        */
-/* ========================================================= */
+
 
 void gestionarFicheros(Puzle p[], int *np, Sala s[], int *ns, Conexion c[], int *nc, int modo) {
 
@@ -56,7 +56,7 @@ void gestionarFicheros(Puzle p[], int *np, Sala s[], int *ns, Conexion c[], int 
 
     if (modo == CARGAR) {
 
-        /* ==================== PUZLES ==================== */
+        /*  PUZLES  */
         *np = 0;
         f = fopen("Puzles.txt", "r");
 
@@ -71,7 +71,7 @@ void gestionarFicheros(Puzle p[], int *np, Sala s[], int *ns, Conexion c[], int 
             fclose(f);
         }
 
-        /* ==================== SALAS ==================== */
+        /*  SALAS  */
         *ns = 0;
         f = fopen("Salas.txt", "r");
 
@@ -83,7 +83,7 @@ void gestionarFicheros(Puzle p[], int *np, Sala s[], int *ns, Conexion c[], int 
             fclose(f);
         }
 
-        /* ==================== CONEXIONES ==================== */
+        /*  CONEXIONES  */
         *nc = 0;
         f = fopen("Conexiones.txt", "r");
 
