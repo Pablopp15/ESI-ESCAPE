@@ -307,7 +307,7 @@ void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int
                 printf("\n  Opcion invalida. Intentalo de nuevo (1-10).\n");
                 break;
         }
-    } while (opcion != 10 && id_sala_actual != 15);
+    } while (opcion != 10);
 }
 
 
