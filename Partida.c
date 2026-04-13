@@ -2,10 +2,15 @@
 #include <string.h> 
 #include "Partida.h"
 
+
+//Cabecera: void iniciar_juego()
+/*Precondición: Los ficheros de la base de datos existen, son accesibles y cumplen su formato. Las constantes MAX_SALAS, MAX_CONEXIONES y 
+MAX_PUZLES están definidas en el sistema y son > 0.*/
+/*Postcondición: Inicializa las estructuras del sistema, transfiere el control de ejecución al bucle del menú principal y, tras su finalización, 
+libera toda la memoria dinámica.*/
 void iniciar_juego() {
     printf("Arrancando el motor de ESI ESCAPE...\n");
 
-    //Inicializamos las listas dinámicas
     ListaJugadores mi_lista_jugadores;
     inicializarListaJugadores(&mi_lista_jugadores);
 
@@ -28,13 +33,10 @@ void iniciar_juego() {
             agregarJugadorALista(&mi_lista_jugadores, &j_temp);
         }
     }
-    
-    //Declararamos y cargamos Salas, Conexiones y Puzles
     Sala mis_salas[MAX_SALAS];           int total_salas = 0;
     Conexion mis_conexiones[MAX_CONEXIONES]; int total_conexiones = 0;
     Puzle mis_puzles[MAX_PUZLES];        int total_puzles = 0;
 
-    // Llamamos a la función que lee Salas.txt y Conexiones.txt
     gestionarFicheros(mis_puzles, &total_puzles, mis_salas, &total_salas, mis_conexiones, &total_conexiones, CARGAR);
 
     printf(">> Datos cargados: %d jugadores, %d salas, %d conexiones.\n", 
@@ -47,12 +49,17 @@ void iniciar_juego() {
     liberarJugadores(&mi_lista_jugadores);
     liberarObjetos(&mi_lista_objetos);
     
-    printf("\nCerrando el programa de forma segura. ¡Hasta pronto!\n");
+    printf("\nCerrando el programa de forma segura. Hasta pronto!\n");
 }
 
 
 
-
+/*Cabecera: void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, 
+Puzle puzles[], int num_puzles)*/
+/*Precondición: Las estructuras de datos pasadas por parámetro deben estar previamente inicializadas en memoria y no ser nulas. Los parámetros numéricos de 
+cantidad deben ser >= 0.*/
+/*Postcondición: Gestiona el sistema de autenticación. Muestra el menú iterativo y deja el control a nueva_partida()
+o cargar_partida() según la elección del usuario, hasta que este elige "Salir".*/
 void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
     char usu[11];
     char cont[9];
@@ -89,7 +96,7 @@ void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
         if(!encontrado) {
             char respuesta;
             printf("\n El usuario '%s' no existe.\n", usu);
-            printf("¿Quieres registrarte con este perfil? (s/n): ");
+            printf("Quieres registrarte con este perfil? (s/n): ");
             
             while (getchar() != '\n'); 
             scanf("%c", &respuesta);
@@ -123,7 +130,7 @@ void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
 
                 logueado = 1;
                 id_jugador_idx = lista_jugadores->num_jugadores - 1; 
-                printf("Registro completado y guardado en disco. Bienvenido, %s.\n", lista_jugadores->jugadores[id_jugador_idx].nom_completo);
+                printf("Registro completado, bienvenido, %s.\n", lista_jugadores->jugadores[id_jugador_idx].nom_completo);
             } else {
                 printf("\nRegistro cancelado. Volviendo al inicio...\n\n");
             }
@@ -157,7 +164,7 @@ void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
                 break;
             case 2:
                 printf("\nCargando partida...\n");
-                cargar_partida(lista_jugadores, lista_obj, salas, num_salas, conexiones, num_conexiones, puzles, num_puzles);
+                cargar_partida(&(lista_jugadores->jugadores[id_jugador_idx]), lista_obj, salas, num_salas, conexiones, num_conexiones, puzles, num_puzles);
                 break;
             case 3:
                 printf("\nSaliendo del juego...\n");
@@ -169,6 +176,13 @@ void menu_principal(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
     } while(opcion_menu != 3);
 }
 
+
+/*Cabecera: void nueva_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, 
+Puzle puzles[], int num_puzles)*/
+/*Precondición: El puntero jugador_actual hace referencia a un perfil de usuario válido y logueado en el sistema. Las listas y vectores del entorno del juego 
+están correctamente inicializados en memoria y sus respectivos contadores numéricos son >= 0.*/
+/*Postcondición: Imprime por pantalla la cabecera visual de inicio y transfiere el control a la función de la lógica central, inicializando la posición 
+del jugador en la sala de inicio.*/
 void nueva_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles){
     printf("\n-------------------------\n");
     printf("  Iniciando nueva partida\n");
@@ -179,7 +193,12 @@ void nueva_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[
 }
 
 
-
+/*Cabecera: void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], 
+int num_puzles, int id_sala_actual)*/
+/*Precondición: El puntero jugador_actual hace referencia a un perfil válido. Las estructuras de datos del entorno están correctamente inicializadas y cargadas en 
+memoria con sus respectivos contadores >= 0. La variable id_sala_actual contiene un identificador numérico válido correspondiente a una sala existente.*/
+/*Postcondición: Ejecuta el bucle principal de interacción del juego, mostrando el menú de la sala actual y procesando las acciones del jugador. 
+El bucle finaliza y devuelve el control al menú principal únicamente si el jugador elige la opción de salir o si logra alcanzar la sala final.*/
 void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles, int id_sala_actual) {
     int opcion = 0;
     char id_obj_input[5];
@@ -235,7 +254,7 @@ void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int
                 id_sala_actual = entrar_en_otra_sala(id_sala_actual, conexiones, num_conexiones);
                 
                 if(id_sala_actual == 20){
-                    printf("\n  !!Felicidades has llegado a la sala final. Saliendo del juego!!\n");
+                    printf("\n  Felicidades has llegado a la sala final. Saliendo del juego!!\n");
                     return;
                 }
                 break;
@@ -311,7 +330,12 @@ void partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int
 }
 
 
-//Funcion para guardar la partida
+/*Cabecera: void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_objetos, Conexion conexiones[], int num_conexiones, Puzle puzles[], 
+int num_puzles)*/
+/*Precondición: Los vectores de datos (objetos, conexiones, puzles) están correctamente inicializados en memoria y sus respectivos tamaños 
+son >= 0. La suma total de los datos a guardar (jugador + sala + objetos + conexiones + puzles) no debe superar la capacidad máxima de la matriz temporal (150 líneas).*/
+/*Postcondición: Traduce el estado actual de la partida (jugador activo, sala en la que se encuentra, ubicación de los objetos, estado de las puertas/conexiones y 
+estado de los puzles) a un formato de texto plano y llama al módulo de ficheros para persistir los datos en el disco duro ("Partida.txt").*/
 void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_objetos, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
     
     char lineas_a_guardar[150][300]; 
@@ -351,56 +375,92 @@ void guardar_partida(char id_jugador[], int id_sala, objetos objetos[], int num_
     //Funcion para escribir en fichero
     escribir_fichero(nombreFichero, lineas_a_guardar, total_lineas);
     
-    printf(">>> Partida enviada al disco duro. ¡Guardado completado!\n");
+    printf(">>> Partida guardada\n");
 }
 
 
 
-// Especialista en Jugadores
+//Cabecera: void parsear_jugador(char linea[], char id_jugador[])
+/*Precondición: El vector de caracteres 'linea' contiene texto válido con el formato esperado ("JUGADOR: %s"). La cadena 'id_jugador' tiene memoria suficiente 
+reservada para almacenar el identificador extraído.*/
+/*Postcondición: Extrae el ID del jugador de la cadena de texto de entrada y lo almacena en la variable 'id_jugador' pasada por referencia.*/
 void parsear_jugador(char linea[], char id_jugador[]) {
     sscanf(linea, "JUGADOR: %s", id_jugador);
 }
 
-// Especialista en Salas 
+//Cabecera: void parsear_sala(char linea[], int *sala)
+/*Precondición: El vector de caracteres 'linea' contiene texto válido con el formato esperado ("SALA: %d"). El puntero 'sala' apunta a una dirección de memoria 
+entera válida.*/
+/*Postcondición: Extrae el identificador numérico de la sala desde la cadena de texto y modifica el valor de la variable apuntada por 'sala'.*/
 void parsear_sala(char linea[], int *sala) {
     sscanf(linea, "SALA: %d", sala);
 }
 
-// Especialista en Objetos
+//Cabecera: void parsear_objeto(char linea[], objetos *obj)
+/*Precondición: El vector de caracteres 'linea' respeta el formato de guardado de objetos ("OBJETO: %[^-]-%s"). El puntero 'obj' apunta a una estructura 'objetos' 
+válida y reservada en memoria.*/
+/*Postcondición: Analiza la línea de texto y extrae el identificador del objeto y su locación, almacenando ambos valores en los campos correspondientes de la 
+estructura apuntada por 'obj'.*/
 void parsear_objeto(char linea[], objetos *obj) {
     sscanf(linea, "OBJETO: %[^-]-%s", obj->Id_obj, obj->locacion);
 }
 
-// Especialista en Conexiones
+//Cabecera: void parsear_conexion(char linea[], Conexion *con)
+/*Precondición: El vector de caracteres 'linea' cumple con la sintaxis de guardado de conexiones ("CONEXIÓN: %[^-]-%s"). El puntero 'con' hace referencia a una 
+estructura 'Conexion' existente.*/
+/*Postcondición: Extrae el identificador y el estado actual de la conexión desde la línea de texto, y actualiza los campos respectivos en la estructura apuntada 
+por 'con'.*/
 void parsear_conexion(char linea[], Conexion *con) {
     sscanf(linea, "CONEXIÓN: %[^-]-%s", con->id, con->estado);
 }
 
-// Especialista en Puzles
+//Cabecera: void parsear_puzle(char linea[], Puzle *puz)
+/*Precondición: El vector de caracteres 'linea' contiene una cadena válida con el formato "PUZLE: %[^-]-%s". El puntero 'puz' apunta a una estructura 'Puzle' 
+previamente inicializada.*/
+/*Postcondición: Parsea el texto introducido para separar el identificador del puzle y su estado (ej. "Resuelto" o "Pendiente"), guardando esta información en 
+los campos correspondientes de la estructura 'puz'.*/
 void parsear_puzle(char linea[], Puzle *puz) {
     sscanf(linea, "PUZLE: %[^-]-%s", puz->id, puz->estado);
 }
 
 
-void cargar_partida(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
+/*Cabecera: void cargar_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, 
+Puzle puzles[], int num_puzles)*/
+/*Precondición: El puntero jugador_actual hace referencia a un usuario válido logueado en el sistema. Las estructuras de datos del juego (lista de objetos, vectores 
+de salas, conexiones y puzles) están correctamente inicializadas en memoria. La función de lectura de ficheros está operativa.*/
+/*Postcondición: Lee el archivo "Partida.txt" para recuperar el estado del juego. Si la partida guardada pertenece al jugador actual, actualiza la memoria con la sala
+guardada, ubicaciones de objetos y estados de conexiones y puzles, para luego ceder el control a la función partida() y continuar jugando. Si la partida pertenece
+a otro usuario o no existe, aborta la carga sin modificar la memoria y devuelve el control al menú.*/
+void cargar_partida(jugador *jugador_actual, ListaObjetos *lista_obj, Sala salas[], int num_salas, Conexion conexiones[], int num_conexiones, Puzle puzles[], int num_puzles) {
     
     char lineas_leidas[300][300];
     int total_lineas = leer_fichero("Partida.txt", lineas_leidas);
 
     if (total_lineas == 0) {
-        printf("-> No hay ninguna partida guardada o hubo un error al leer el archivo.\n");
+        printf("-> No hay ninguna partida guardada.\n");
         return;
     }
 
     char id_jugador_recuperado[10] = ""; 
     int sala_recuperada = 1;
 
+
     for (int i = 0; i < total_lineas; i++) {
-        
         if (strncmp(lineas_leidas[i], "JUGADOR:", 8) == 0) {
             parsear_jugador(lineas_leidas[i], id_jugador_recuperado);
-            
-        } else if (strncmp(lineas_leidas[i], "SALA:", 5) == 0) {
+            break;
+        }
+    }
+
+
+    if (strcmp(jugador_actual->Id_jug, id_jugador_recuperado) != 0) {
+        printf("\n>>> Error: No tienes ninguna partida guardada con este perfil.\n");
+        printf(">>> Debes empezar una Nueva Partida.\n");
+        return; 
+    }
+
+    for (int i = 0; i < total_lineas; i++) {
+        if (strncmp(lineas_leidas[i], "SALA:", 5) == 0) {
             parsear_sala(lineas_leidas[i], &sala_recuperada);
             
         } else if (strncmp(lineas_leidas[i], "OBJETO:", 7) == 0) {
@@ -435,19 +495,6 @@ void cargar_partida(ListaJugadores *lista_jugadores, ListaObjetos *lista_obj, Sa
         }
     }
 
-    // Buscamos al jugador
-    jugador *jugador_encontrado = NULL;
-    for(int i = 0; i < lista_jugadores->num_jugadores; i++) {
-        if(strcmp(lista_jugadores->jugadores[i].Id_jug, id_jugador_recuperado) == 0) {
-            jugador_encontrado = &(lista_jugadores->jugadores[i]);
-            break;
-        }
-    }
-
-    if(jugador_encontrado != NULL) {
-        printf("\n>>> Partida cargada con exito. Retomando mision...\n");
-        partida(jugador_encontrado, lista_obj, salas, num_salas, conexiones, num_conexiones, puzles, num_puzles, sala_recuperada);
-    } else {
-        printf("\n>>> Error: El jugador de la partida guardada no existe en el sistema.\n");
-    }
+    printf("\n>>> Partida cargada con exito. Retomando mision...\n");
+    partida(jugador_actual, lista_obj, salas, num_salas, conexiones, num_conexiones, puzles, num_puzles, sala_recuperada);
 }
