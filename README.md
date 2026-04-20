@@ -15,12 +15,12 @@
 
 
 
-->Modulo Salas: Gonzalo Gil Luque
+->Modulo Salas: Gonzalo Gil Duque
 
 
 
 
-->Modulo Conexiones: Gonzalo Gil Luque
+->Modulo Conexiones: Gonzalo Gil Duque
 
 
 
