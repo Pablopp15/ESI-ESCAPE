@@ -30,4 +30,4 @@
 
 
 
-->Modulo Puzzle: Pablo Cabrera Gonzalez
+->Modulo Puzle: Pablo Cabrera Gonzalez
