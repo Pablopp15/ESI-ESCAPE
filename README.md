@@ -27,7 +27,7 @@ conexiones.h
 
 ->Modulo Ficheros: Pablo Cabrera Gonzalez
 Ficheros.h
-Ficheros.c
+ficheros.c
 
 ->Modulo Puzle: Pablo Cabrera Gonzalez
 puzles.c
