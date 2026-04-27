@@ -20,9 +20,7 @@ typedef struct {
 typedef struct {
     char id[4];
     int origen;
-    char nombre_origen[31];
     int destino;
-    char nombre_destino[31];
     char estado[15];
     char condicion[10];
 } Conexion;

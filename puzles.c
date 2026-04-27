@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "puzles.h"
-#include "conexiones.h" 
+#include "conexiones.h"
 
 void resolver_puzle(int id_sala_actual, Puzle puzles[], int num_puzles, Conexion conexiones[], int num_conexiones) {
     int puzle_encontrado = 0;
@@ -31,11 +31,12 @@ void resolver_puzle(int id_sala_actual, Puzle puzles[], int num_puzles, Conexion
 
             // 3. Comprobar si ha acertado
             if (strcmp(respuesta_jugador, puzles[i].solucion) == 0) {
-                printf("\n-> ¡CORRECTO! Has resuelto el misterio.\n");
+                printf("\n-> CORRECTO! Has resuelto el misterio.\n");
                 strcpy(puzles[i].estado, "Resuelto");
                 
+                // --- LA MAGIA PARA ABRIR LA PUERTA ---
                 for(int j = 0; j < num_conexiones; j++) {
-                  
+                    // Si la puerta sale de esta sala y su condición de bloqueo es el ID de este puzle...
                     if(conexiones[j].origen == id_sala_actual && strcmp(conexiones[j].condicion, puzles[i].id) == 0) {
                         strcpy(conexiones[j].estado, "Abierta"); // "Abierta", no "ABIERTA"
                         printf("-> La puerta hacia la sala %02d ahora esta Abierta.\n", conexiones[j].destino);

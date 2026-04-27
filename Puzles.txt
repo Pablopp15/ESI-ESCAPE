@@ -1,3 +1,3 @@
 P01-Taquilla_Norte-2-Palabra-En una taquilla hay un candado de letras y una nota: 'El lenguaje web basico'. Hazlo en minusculas.-html-Pendiente
 P02-Panel_Seguridad-12-Codigo-Junto a la puerta de Servidores hay un teclado numerico. Pista pegada: 'Los bits que forman un byte'.-8-Pendiente
-P03-Puerta_Final-1-Palabra-El despacho pide una accion final. 'Para que tu programa en C funcione, debes...'-compilar-Pendiente
+P03-Puerta-15-Palabra-La puerta de la terraza esta bloqueada, introduce el codigo. 'Para que tu programa en C funcione, debes...'-compilar-Pendiente

@@ -87,21 +87,9 @@ void gestionarFicheros(Puzle p[], int *np, Sala s[], int *ns, Conexion c[], int 
         f = fopen("Conexiones.txt", "r");
 
         if (f != NULL) {
-            while (fscanf(f, "%3[^-]-%d-%d-%14[^-]-%9[^\n]\n",
-             c[*nc].id, &c[*nc].origen, &c[*nc].destino, c[*nc].estado, c[*nc].condicion) == 5) {
-        
-       
-        for (int i = 0; i < *ns; i++) {
-            // Si el ID de la sala coincide con el origen de la conexión
-            if (s[i].id == c[*nc].origen) {
-                strcpy(c[*nc].nombre_origen, s[i].nombre);
-            }
-            // Si el ID de la sala coincide con el destino de la conexión
-            if (s[i].id == c[*nc].destino) {
-                strcpy(c[*nc].nombre_destino, s[i].nombre);
-            }
-        }
-
+            while (fscanf(f,"%3[^-]-%d-%d-%14[^-]-%9[^\n]\n",
+                c[*nc].id, &c[*nc].origen, &c[*nc].destino,
+                c[*nc].estado, c[*nc].condicion) == 5) {
                 (*nc)++;
             }
             fclose(f);
